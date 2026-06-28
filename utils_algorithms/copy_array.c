@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   copy_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crmatas- <crmatas-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/17 16:23:44 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/25 12:17:01 by crmatas-         ###   ########.fr       */
+/*   Updated: 2026/06/28 18:35:38 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	*copy_array(int *arr, int size)
 	if (!copy)
 		return (NULL);
 	i = 0;
-	while (arr)
+	while (i < size)
 	{
 		copy[i] = arr[i];
 		i++;

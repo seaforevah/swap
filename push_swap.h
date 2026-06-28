@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 16:30:49 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/26 12:25:26 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/28 18:06:32 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include	<stdlib.h>
 # include	<stdio.h>
 # include	<limits.h>
+# include <unistd.h>
 
 typedef enum e_op_counts
 {
@@ -75,6 +76,8 @@ void	push_min_to_b(t_push_swap *ps);
 void	sort_simple(t_push_swap *ps);
 void	sort_adaptive(t_push_swap *ps);
 
+// benchmark
+void	print_benchmark_report(t_push_swap *ps, double disorder);
 // error
 void	error(t_push_swap *ps);
 // initialize
@@ -99,10 +102,13 @@ char	*ft_strdup(const char *s);
 char	**split(char const *s, char c);
 int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_strlen(const char *s);
 long	ft_atol(const char *nptr);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
+
+
 // utils_algorithms
 void	assign_index(t_node *stack, int *sorted, int size);
 void	bring_to_top_a(t_push_swap *ps, int pos);
@@ -121,7 +127,6 @@ int		stack_size(t_node *stack);
 int		*stack_to_array(t_node *stack, int size);
 void	update_position(t_node *stack);
 void	sort_three(t_push_swap *ps);
-static int	count_mistakes(int *arr, int size, int *total_pairs);
 double	compute_disorder(t_node *stack);
 
 // mov_functions

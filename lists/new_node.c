@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_adaptive.c                                    :+:      :+:    :+:   */
+/*   new_node.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:27:01 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/25 17:34:27 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/27 18:45:37 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*This function sorts a stack adaptively based on
-its disorder level.*/
-
-void	sort_adaptive(t_push_swap *ps)
+t_node	*new_node(int value)
 {
-	double	disorder;
+	t_node	*new;
 
-	disorder = compute_disorder(ps->a);
-	if (disorder < 0.2)
-		sort_simple(ps);
-	else if (disorder >= 0.2 && disorder < 0.5)
-		sort_medium(ps);
-	else
-		radix_algorithm(ps);
+	new = malloc(sizeof (t_node));
+	if (!new)
+		return (NULL);
+	new->value = value;
+	new->next = NULL;
+	new->pos = 0;
+	new->next = NULL;
+	return (new);
 }
+/*
+#include <stdio.h>
+
+int	main(void)
+{
+	t_node	*n;
+
+	n = new_node(42);
+	printf("%d\n", n->value);
+}*/

@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 13:34:38 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/25 17:24:18 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/28 18:04:01 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	count_mistakes(int *arr, int size, int *total_pairs)
 		j = i + 1;
 		while (j < size)
 		{
-			*total_pairs++;
+			(*total_pairs)++;
 			if (arr[i] > arr[j])
 				mistakes++;
 			j++;

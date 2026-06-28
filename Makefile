@@ -3,10 +3,11 @@ NAME = push_swap
 
 # Compiler and flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -I. -g
 
 # Source files
-SRCS = algorithms/chunk_sort_algorithm.c \
+SRCS = main.c \
+	algorithms/chunk_sort_algorithm.c \
 	algorithms/radix_algorithm.c \
 	algorithms/sort_simple.c \
 	algorithms/sort_adaptive.c \
@@ -24,6 +25,7 @@ SRCS = algorithms/chunk_sort_algorithm.c \
 	utils/ft_strcmp.c \
 	utils/ft_strdup.c \
 	utils/ft_substr.c \
+	utils/ft_strlen.c \
 	utils/split.c \
 	utils/utils_benchmark.c \
 	utils_algorithms/assign_index.c \
@@ -72,7 +74,7 @@ $(NAME): $(OBJS)
 # Compiles .c a .o
 $(OBJDIR)/%.o: %.c push_swap.h
 	@mkdir -p $(OBJDIR)
-	$(CC) $(FLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Clean object files
 clean:

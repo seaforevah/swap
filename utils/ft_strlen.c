@@ -1,49 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/16 16:13:32 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/28 17:57:41 by maaros-f         ###   ########.fr       */
+/*   Created: 2026/06/28 17:56:51 by maaros-f          #+#    #+#             */
+/*   Updated: 2026/06/28 17:57:40 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*ft_strdup(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	unsigned char	*new;
-	size_t			size;
-	size_t			i;
+	size_t	i;
 
-	size = ft_strlen(s);
-	new = malloc(sizeof(char) * (size + 1));
-	if (new == NULL)
-		return (NULL);
 	i = 0;
-	while (s[i] != '\0')
-	{
-		new[i] = s[i];
+	while (s[i])
 		i++;
-	}
-	new[i] = '\0';
-	return ((char *)new);
+	return (i);
 }
-
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	char	*result;
-
-	result = ft_strdup("hola cara cola");
-	if (result)
-	{
-		printf ("%s", result);
-		free(result);
-	}
-	return (0);
-}*/

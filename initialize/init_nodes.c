@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_nodes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crmatas- <crmatas-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/16 21:00:35 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/25 12:15:36 by crmatas-         ###   ########.fr       */
+/*   Updated: 2026/06/28 17:53:45 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 void	init_nodes(t_push_swap *ps)
 {
-	update_positions(ps->a);
-	update_positions(ps->b);
+	update_position(ps->a);
+	update_position(ps->b);
 }

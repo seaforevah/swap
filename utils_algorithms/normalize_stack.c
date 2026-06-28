@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   normalize_stack.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crmatas- <crmatas-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/18 00:52:32 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/18 20:21:28 by crmatas-         ###   ########.fr       */
+/*   Updated: 2026/06/28 18:01:47 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	normalize_stack(t_push_swap *ps)
 	arr = stack_to_array(ps->a, ps->size_a);
 	if (!arr)
 		return ;
-	sorted = array_copy(arr, ps->size_a);
+	sorted = copy_array(arr, ps->size_a);
 	if (!sorted)
 	{
 		free (arr);

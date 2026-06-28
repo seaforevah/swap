@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 14:56:33 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/25 17:30:29 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/27 18:23:19 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ra(t_push_swap *ps)
 {
 	rotate(&ps->a);
 	write (1, "ra\n", 3);
-	if (ps->bench && ps->bench.active)
+	if (ps->bench.active)
 	{
 		ps->bench.total_ops++;
 		ps->bench.op_counts[RA]++;
@@ -49,7 +49,7 @@ void	rb(t_push_swap *ps)
 {
 	rotate(&ps->b);
 	write(1, "rb\n", 3);
-	if (ps->bench && ps->bench.active)
+	if (ps->bench.active)
 	{
 		ps->bench.total_ops++;
 		ps->bench.op_counts[RB]++;
@@ -61,7 +61,7 @@ void	rr(t_push_swap *ps)
 	rotate(&ps->a);
 	rotate(&ps->b);
 	write(1, "rr\n", 3);
-	if (ps->bench && ps->bench.active)
+	if (ps->bench.active)
 	{
 		ps->bench.total_ops++;
 		ps->bench.op_counts[RR]++;

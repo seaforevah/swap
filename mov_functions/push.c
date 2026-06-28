@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/04 19:36:11 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/25 17:27:36 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/27 18:23:21 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	pa(t_push_swap *ps)
 {
 	push(&ps->a, &ps->b);
 	write(1, "pa\n", 3);
-	if (ps->bench && ps->bench.active)
+	if (ps->bench.active)
 	{
 		ps->bench.total_ops++;
 		ps->bench.op_counts[PA]++;
@@ -45,7 +45,7 @@ void	pb(t_push_swap *ps)
 {
 	push(&ps->b, &ps->a);
 	write(1, "pb\n", 3);
-	if (ps->bench && ps->bench.active)
+	if (ps->bench.active)
 	{
 		ps->bench.total_ops++;
 		ps->bench.op_counts[PB]++;

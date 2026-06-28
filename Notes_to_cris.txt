@@ -1,0 +1,30 @@
+I merged our branches and started to work and checking the bugs.
+
+These are little things to solve so the program compiles
+and works:
+
+1. DONE parse_arg (inside parse_args.c) is a void function so
+in the end it should return anything.
+- return (1); -----> return ;
+
+2. DONE Bring_to_top (in chunk_sort_slgorithm.c) doesn't exist
+- bring_to_top(ps, pos) -----> bring_to_top_a(ps, pos)
+
+3. DONE t_node *new_node i added this:
+    new->pos = 0;
+	new->next = NULL;
+
+3. In chunk_sort_slgorithm I saw that this line:
+pos = find_first_chunk_pos(ps->a, start, end, &pos);
+is out of the while, when it is supposed to chnage everytime
+the while runs, in this format the variable pos never changes.
+I didn't unerstand very well the logic you are following in
+this function, so it would cool if we meet for checking about
+this! :)
+
+4. I already finished the readme file, EXCEPTING chunk sort 
+algorithm, as I wasn't sure about it. If you want to make any
+changes because you don't agree on something, you are free to
+modify it as you wish. I consider my part there is done.
+
+add to reeadme the compilation orders XDDDD

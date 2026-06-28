@@ -1,5 +1,64 @@
 _This project has been created as part of the 42 curriculum by crmatas-, maaros-f._
 
+## Description
+
+`push_swap` is a 42 project that sorts a stack of unique integers using only
+two stacks (`a` and `b`) and a restricted set of 11 operations (`sa`, `sb`,
+`ss`, `pa`, `pb`, `ra`, `rb`, `rr`, `rra`, `rrb`, `rrr`). The program receives
+the integers as command-line arguments, validates them, and prints to
+`stdout` the minimal sequence of operations needed to sort stack `a` in
+ascending order, leaving stack `b` empty at the end.
+
+Beyond the mandatory single algorithm, this implementation offers four
+selectable strategies (`--simple`, `--medium`, `--complex`, `--adaptive`),
+each targeting a different complexity class, plus an optional `--bench`
+mode that reports the disorder level of the input and detailed operation
+statistics without interfering with the program's normal output.
+
+## Instructions
+
+### Compilation
+
+```bash
+make        # builds the push_swap executable
+make clean  # removes object files
+make fclean # removes object files and the executable
+make re     # fclean + all
+```
+
+The Makefile compiles with `-Wall -Wextra -Werror` and does not relink
+unnecessarily.
+
+### Execution
+
+```bash
+./push_swap [STRATEGY] <list of integers>
+```
+
+Numbers can be passed as separate arguments or as a single quoted string:
+
+```bash
+./push_swap 3 1 2
+./push_swap "3 1 2"
+```
+
+Optional flags (only one strategy flag allowed, defaults to `--adaptive`
+if none is given):
+
+| Flag | Effect |
+|------|--------|
+| `--simple` | Forces the O(n²) selection-sort strategy |
+| `--medium` | Forces the O(n√n) chunk-based strategy |
+| `--complex` | Forces the O(n log n) radix strategy |
+| `--adaptive` | Picks a strategy automatically based on disorder (default) |
+| `--bench` | Prints disorder %, strategy used, and operation counts to `stderr` |
+
+Example with benchmark mode:
+
+```bash
+./push_swap --bench --adaptive 5 4 3 2 1 2>bench.txt >/dev/null
+cat bench.txt
+```
 
 ## Data Structures
 
@@ -249,7 +308,7 @@ The `SIMPLE` strategy is a **selection sort adaptation**, designed for small inp
  
 ```c
 void	push_min_to_b(t_push_swap *ps);
-void	sort_three(t_node **stack_a, t_bench *bench);
+void	sort_three(t_push_swap *ps);
 void	sort_simple(t_push_swap *ps);
 ```
  
@@ -262,9 +321,6 @@ void	sort_simple(t_push_swap *ps);
    - Push it onto `b` with `pb`.
 2. Once `a` holds exactly 3 elements, sort them directly with `sort_three`.
 3. Push every remaining element from `b` back into `a` with `pa`.
-#### Why no extra rotation on `b` is needed
- 
-Each value pushed onto `b` is, by construction, **larger** than every value pushed before it (because we always extract the current minimum of what remains in `a`). This means `b` naturally ends up ordered from largest (top) to smallest (bottom). When elements are then pushed back into `a` one by one with `pa`, they arrive in ascending order at the top of `a`, leaving the whole stack correctly sorted without any additional rotation of `b`.
  
 #### Complexity (in the Push_swap operation model)
  
@@ -287,6 +343,47 @@ The subject requires a mandatory metric, computed **before any move**, that expr
 3. Each pair is counted in `total_pairs`. If the earlier element is greater than the later one (`arr[i] > arr[j]`), it is also counted as a `mistake`.
 4. The result is `mistakes / total_pairs`, cast to `double` so the division keeps its decimal precision instead of being truncated.
 This follows the exact formula given by the subject (VI.3.2), adapted only to work on an array instead of an abstract indexable collection.
+
+### MEDIUM — O(n√n)
+#### How it works
+#### Complexity (in the Push_swap operation model)
+
+### COMPLEX — O(n log n)
+
+The `COMPLEX` strategy implements a **radix sort adaptation** using binary
+digits, giving the best theoretical complexity of the four strategies.
+
+**Files:** `radix_algorithm.c`
+
+**Functions:**
+
+```c
+void	radix_algorithm(t_push_swap *ps);
+```
+
+#### How it works
+
+1. Each value in stack `a` is normalized into an `index` (its rank from `0`
+   to `n - 1`) via `assign_index`, so the radix sort works on a dense range
+   of indexes rather than arbitrary integer values.
+2. The algorithm computes how many bits are needed to represent the
+   largest index (`get_max_bits`).
+3. For each bit position, from least significant to most significant:
+   - Every element of `a` is inspected. If its current bit is `1`, it is
+     rotated to `b` with `ra` + `pb`pattern (kept in relative order);
+     otherwise it goes straight to `b` with `pb`.
+   - Once all elements have been distributed, everything is pushed back
+     from `b` to `a` with `pa`, preserving the partition created by that bit.
+4. After processing all bits, stack `a` ends up fully sorted, because at
+   each pass the elements are stably partitioned by an increasingly
+   significant bit, the same principle as a classic LSD radix sort.
+
+#### Complexity (in the Push_swap operation model)
+
+Each of the `log2(n)` bit passes visits every element of the stack exactly
+once, giving **O(n log n)** operations in total — the best asymptotic
+complexity among the four strategies, at the cost of a less intuitive
+implementation.
  
 ### ADAPTIVE
  
@@ -311,12 +408,61 @@ These thresholds match the regimes imposed by the subject itself (VI.3.3, point 
 - **Low disorder (< 0.2):** the stack is already close to sorted, so the overhead of building chunks or running a radix pass would cost more operations than it saves. A direct O(n²) selection sort finds and fixes the few remaining mistakes with minimal extra cost.
 - **Medium disorder (0.2–0.5):** the stack is partially shuffled. Splitting the values into roughly `√n` chunks groups nearby values together, letting the algorithm sort large ranges of the stack at once instead of moving one element at a time.
 - **High disorder (≥ 0.5):** the stack is heavily shuffled, close to a worst-case random order. At this point the O(n log n) radix-based strategy is the only one that keeps the number of operations bounded as `n` grows, even though it is more expensive to set up than the other two.
+
 #### Complexity and space argument
  
 `compute_disorder` itself runs in O(n²) (it compares every pair of elements), but this cost is paid only **once**, before any sorting decision, and is independent of which strategy is later chosen. The complexity class claimed for each branch (`O(n²)`, `O(n√n)`, `O(n log n)`) refers to the number of Push_swap operations generated by the strategy that `sort_adaptive` delegates to, not to the cost of measuring disorder itself. In terms of space, `compute_disorder` only allocates one temporary integer array of size `n` (freed immediately after use), so its memory cost is O(n) and does not accumulate across calls.
 
-# Resources
-https://medium.com/@ayogun/push-swap-c1f5d2d41e97
-https://pure-forest.medium.com/push-swap-turk-algorithm-explained-in-6-steps-4c6650a458c0
-https://www.manning.com/books/grokking-algorithms?source=post
-https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a
+
+## Contributions
+
+### crmatas-
+
+- Argument parsing and validation (`parse_args.c`, `is_strategy.c`, `strategy_selector.c`)
+- Duplicate / overflow checks and linked-list infrastructure (`add_nbr.c`, `last_node.c`, `is_dplcte.c`)
+- Memory management (`free_mtx.c`, `free_stack.c`)
+- String/number utilities (`ft_atol.c`, `ft_strcmp.c`, `ft_strdup.c`, `ft_substr.c`, `split.c`)
+- `--medium` (chunk-based) and `--complex` (radix) sorting algorithms
+- Project initialization (`init_push_swap.c`, `init_nodes.c`) and error handling (`error.c`)
+
+### maaros-f
+
+- Core stack operations: swap, push, rotate, reverse rotate (`swap.c`,
+  `push.c`, `rotate.c`, `reverse_rotate.c`) including their `--bench` counters
+- `--simple` (selection sort) and `--adaptive` (strategy selector) algorithms
+- Disorder metric computation (`compute_disorder.c`)
+- Benchmark mode output (`utils_benchmark.c`, `print_benchmark_report.c`)
+- `main.c` and the project header (`push_swap.h`)
+- Git workflow management and `--bench` design
+
+Both members reviewed and can explain the other's code, in line with the
+42 peer-evaluation requirement that each learner understands the entire
+codebase, not only their own contributions.
+
+## Resources
+
+### References
+
+- [Push_swap explained — ayogun](https://medium.com/@ayogun/push-swap-c1f5d2d41e97)
+- [Push_swap — Turkish algorithm explained in 6 steps](https://pure-forest.medium.com/push-swap-turk-algorithm-explained-in-6-steps-4c6650a458c0)
+- [Grokking Algorithms (book)](https://www.manning.com/books/grokking-algorithms?source=post)
+- [Push_swap — least amount of moves with two stacks](https://medium.com/@jamierobertdawson/push-swap-the-least-amount-of-moves-with-two-stacks-d1e76a71789a)
+
+### AI usage
+
+Claude (Anthropic) was used as a learning and debugging aid throughout the
+project, specifically for:
+
+- Explaining C concepts neither of us had used before (pointer arithmetic,
+  recursion, double-pointer manipulation for linked lists).
+- Reviewing functions against Norminette rules (line count, variable count
+  per function) and suggesting how to split logic into smaller static
+  helper functions without changing behavior.
+- Debugging logic errors (e.g. infinite loops, incorrect loop conditions)
+  by walking through the code step by step.
+- Reviewing the git workflow (branching, staging, committing, pushing).
+
+All algorithm design decisions, the actual code, and the final
+implementation were written and understood by both team members. AI was
+not used to generate untested code or to replace understanding of the
+subject's requirements.

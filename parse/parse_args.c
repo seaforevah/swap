@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crmatas- <crmatas-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 18:50:17 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/25 12:13:50 by crmatas-         ###   ########.fr       */
+/*   Updated: 2026/06/27 18:34:42 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ static void	parse_arg(t_push_swap *ps, char *argv)
 		}
 		free_mtx(mtx);
 	}
-	return (1);
+	return ;
 }
 
 int	parse_args(t_push_swap *ps, int argc, char **argv)
