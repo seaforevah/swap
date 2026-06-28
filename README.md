@@ -466,3 +466,112 @@ All algorithm design decisions, the actual code, and the final
 implementation were written and understood by both team members. AI was
 not used to generate untested code or to replace understanding of the
 subject's requirements.
+
+## Quick Evaluation Commands
+
+This section gathers every command needed to evaluate this project,
+following the official scale. Run them in order from the repository root.
+`checker_linux` (or `checker_Mac`) must be in the same directory.
+
+### 1. Compilation
+
+```bash
+make && make clean && make fclean && make re
+ls push_swap   # the executable must exist after this
+```
+
+### 2. Norminette
+
+```bash
+norminette *.c *.h
+```
+
+### 3. Error management
+
+```bash
+./push_swap a b c                      # → "Error" on stderr
+./push_swap 1 2 2                      # → "Error" on stderr (duplicate)
+./push_swap 1 2 99999999999            # → "Error" on stderr (overflow)
+./push_swap                            # → no output, prompt returns
+```
+
+### 4. Strategy selection — basic tests
+
+```bash
+./push_swap --simple 5 4 3 2 1
+./push_swap --medium 5 4 3 2 1
+./push_swap --complex 5 4 3 2 1
+./push_swap --adaptive 5 4 3 2 1
+./push_swap 5 4 3 2 1                  # no flag → defaults to adaptive
+```
+
+### 5. Identity test — already sorted input
+
+```bash
+./push_swap 42                         # → no output
+./push_swap 2 3                        # → no output
+./push_swap 0 1 2 3                    # → no output
+./push_swap 0 1 2 3 4 5 6 7 8 9        # → no output
+```
+
+### 6. Small inputs (3 numbers) — with checker
+
+```bash
+ARG="2 1 0"; ./push_swap $ARG | ./checker_linux $ARG
+ARG="0 2 1"; ./push_swap $ARG | ./checker_linux $ARG
+ARG="1 0 2"; ./push_swap $ARG | ./checker_linux $ARG
+```
+
+### 7. Medium inputs (5 numbers) — with checker + op count
+
+```bash
+ARG="1 5 2 4 3"; ./push_swap $ARG | ./checker_linux $ARG
+ARG="5 1 4 2 3"; ./push_swap $ARG | ./checker_linux $ARG
+ARG="3 5 1 4 2"; ./push_swap $ARG | ./checker_linux $ARG
+
+# instruction count for the same input:
+ARG="1 5 2 4 3"; ./push_swap $ARG | wc -l
+```
+
+### 8. Benchmark mode and disorder calculation
+
+```bash
+./push_swap --bench --simple 5 4 3 2 1 2>/dev/null            # stdout = sorting ops
+./push_swap --bench --simple 5 4 3 2 1 2>bench.txt >/dev/null && cat bench.txt
+
+./push_swap --bench --simple 1 2 3 4 5 2>&1 >/dev/null | grep disorder   # ~0.00%
+./push_swap --bench --simple 5 4 3 2 1 2>&1 >/dev/null | grep disorder   # ~100.00%
+```
+
+### 9. Large inputs (100 numbers)
+
+```bash
+ARG=$(shuf -i 1-500 -n 100 | tr '\n' ' ')
+./push_swap $ARG | ./checker_linux $ARG
+./push_swap $ARG | wc -l   # should be < 2000 (ideally < 700)
+```
+
+### 10. Strategy comparison (50 numbers, same input)
+
+```bash
+ARG=$(shuf -i 1-200 -n 50 | tr '\n' ' ')
+echo "simple:";   ./push_swap --simple   $ARG | wc -l
+echo "medium:";   ./push_swap --medium   $ARG | wc -l
+echo "complex:";  ./push_swap --complex  $ARG | wc -l
+echo "adaptive:"; ./push_swap --adaptive $ARG | wc -l
+./push_swap --complex $ARG | ./checker_linux $ARG
+```
+
+### 11. Very large inputs (500 numbers)
+
+```bash
+ARG=$(shuf -i 1-1000 -n 500 | tr '\n' ' ')
+./push_swap $ARG | ./checker_linux $ARG
+./push_swap $ARG | wc -l   # should be < 12000 (ideally < 5500)
+```
+
+### 12. Memory leaks
+
+```bash
+valgrind --leak-check=full --show-leak-kinds=all ./push_swap 3 1 2
+```
