@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/22 10:09:25 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/28 17:49:22 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/28 23:04:57 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	print_two_digits(int n, int fd)
 		ft_putchar_fd('0', fd);
 	ft_putnbr_fd(n, fd);
 }
+
 void	print_disorder(double disorder, int fd)
 {
 	double	percent;

@@ -6,11 +6,23 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 01:00:06 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/28 18:27:32 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/28 23:34:06 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	execute_strategy(t_push_swap *ps)
+{
+	if (ps->strategy == SIMPLE)
+		sort_simple(ps);
+	else if (ps->strategy == MEDIUM)
+		chunk_sort_algorithm(ps);
+	else if (ps->strategy == COMPLEX)
+		radix_algorithm(ps);
+	else
+		sort_adaptive(ps);
+}
 
 int	main(int argc, char **argv)
 {
@@ -25,16 +37,7 @@ int	main(int argc, char **argv)
 	normalize_stack(&ps);
 	disorder = compute_disorder(ps.a);
 	if (!is_sorted(ps.a))
-	{
-		if (ps.strategy == SIMPLE)
-			sort_simple(&ps);
-		else if (ps.strategy == MEDIUM)
-			chunk_sort_algorithm(&ps);
-		else if (ps.strategy == COMPLEX)
-			radix_algorithm(&ps);
-		else
-			sort_adaptive(&ps);
-	}		
+		execute_strategy(&ps);
 	if (ps.bench.active)
 		print_benchmark_report(&ps, disorder);
 	free_stack(ps.a);

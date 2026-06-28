@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 13:34:38 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/28 18:04:01 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/28 23:38:46 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ double	compute_disorder(t_node *stack)
 	int	total_pairs;
 
 	size = stack_size(stack);
+	if (size < 2)
+		return (0.0);
 	arr = stack_to_array(stack, size);
 	mistakes = count_mistakes(arr, size, &total_pairs);
 	free(arr);

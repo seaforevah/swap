@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_push_swap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crmatas- <crmatas-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 22:33:32 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/25 12:15:16 by crmatas-         ###   ########.fr       */
+/*   Updated: 2026/06/28 23:11:41 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,20 @@
 
 void	init_push_swap(t_push_swap *ps)
 {
+	int	i;
+
 	ps->strategy = ADAPTIVE;
 	ps->has_strategy = 0;
 	ps->bench.active = 0;
+	ps->bench.total_ops = 0;
+	ps->bench.strategy = "Already sorted";
+	ps->bench.complexity = "O(n)";
+	i = 0;
+	while (i < 11)
+	{
+		ps->bench.op_counts[i] = 0;
+		i++;
+	}
 	ps->a = NULL;
 	ps->b = NULL;
 	ps->size_a = 0;

@@ -1,0 +1,5 @@
+[bench] disorder: 0.00%
+[bench] strategy: Already sorted / O(n)
+[bench] total_ops: 0
+[bench] sa: 0  sb: 0  ss: 0  pa: 0  pb: 0
+[bench] ra: 0  rb: 0  rr: 0  rra: 0  rrb: 0  rrr: 0

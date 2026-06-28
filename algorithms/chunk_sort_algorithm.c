@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 21:14:42 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/28 18:29:05 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/28 23:43:55 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	chunk_sort_algorithm(t_push_swap *ps)
 	int	end;
 	int	pos;
 
+	ps->bench.strategy = "Chunk Sort";
+	ps->bench.complexity = "O(n*sqrt(n))";
 	chunk_size = get_chunk_size(ps->size_a);
 	start = 0;
 	end = chunk_size - 1;

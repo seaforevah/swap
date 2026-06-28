@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 18:50:17 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/27 18:34:42 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/28 22:56:33 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,21 @@ static int	parse_content(char **mtx, t_push_swap *ps)
 	while (mtx[j])
 	{
 		if (!is_num(mtx[j]))
+		{
+			free_mtx(mtx);
 			error(ps);
+		}
 		n = ft_atol(mtx[j]);
 		if (n > INT_MAX || n < INT_MIN)
+		{
+			free_mtx(mtx);
 			error(ps);
+		}
 		if (!add_nbr(&ps->a, (int)n))
+		{
+			free_mtx(mtx);
 			error(ps);
+		}
 		j++;
 	}
 	return (1);

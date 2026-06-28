@@ -22,9 +22,10 @@ I didn't unerstand very well the logic you are following in
 this function, so it would cool if we meet for checking about
 this! :)
 
-4. I already finished the readme file, EXCEPTING chunk sort 
-algorithm, as I wasn't sure about it. If you want to make any
-changes because you don't agree on something, you are free to
-modify it as you wish. I consider my part there is done.
+4. DONE Print_two_digits function
 
-add to reeadme the compilation orders XDDDD
+-------------
+no mem leaks
+norminette done
+cuando pongo solo dos parametros da ko en el simple: cambié sort_three, separé la función principal en dos funciones y hay otra función que tiene en cuennta si solo se reciben dos parametros.
+

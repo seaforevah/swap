@@ -1,0 +1,5 @@
+[bench] disorder: 100.00%
+[bench] strategy: Simple / Selection Sort / O(n^2)
+[bench] total_ops: 8
+[bench] sa: 1  sb: 0  ss: 0  pa: 2  pb: 2
+[bench] ra: 0  rb: 0  rr: 0  rra: 3  rrb: 0  rrr: 0

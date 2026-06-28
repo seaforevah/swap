@@ -6,16 +6,16 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/29 16:30:49 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/28 18:06:32 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/28 23:06:06 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include	<stdlib.h>
-# include	<stdio.h>
-# include	<limits.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <limits.h>
 # include <unistd.h>
 
 typedef enum e_op_counts
@@ -107,7 +107,6 @@ long	ft_atol(const char *nptr);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putchar_fd(char c, int fd);
-
 
 // utils_algorithms
 void	assign_index(t_node *stack, int *sorted, int size);
