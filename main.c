@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/23 01:00:06 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/28 23:34:06 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/30 21:27:18 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,12 @@ int	main(int argc, char **argv)
 	disorder = compute_disorder(ps.a);
 	if (!is_sorted(ps.a))
 		execute_strategy(&ps);
-	if (ps.bench.active)
+	if (ps.count_only)
+		{
+			ft_putnbr_fd(ps.bench.total_ops, 1);
+			ft_putchar_fd( '\n', 1);
+		}
+	else if (ps.bench.active)
 		print_benchmark_report(&ps, disorder);
 	free_stack(ps.a);
 	free_stack(ps.b);

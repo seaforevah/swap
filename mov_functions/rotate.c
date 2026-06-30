@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 14:56:33 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/27 18:23:19 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/30 21:33:39 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ void	rotate(t_node **stack)
 void	ra(t_push_swap *ps)
 {
 	rotate(&ps->a);
-	write (1, "ra\n", 3);
-	if (ps->bench.active)
+	if (!ps->count_only)
+		write (1, "ra\n", 3);
+	if (ps->bench.active || ps->count_only)
 	{
 		ps->bench.total_ops++;
 		ps->bench.op_counts[RA]++;
@@ -48,8 +49,9 @@ void	ra(t_push_swap *ps)
 void	rb(t_push_swap *ps)
 {
 	rotate(&ps->b);
-	write(1, "rb\n", 3);
-	if (ps->bench.active)
+	if (!ps->count_only)
+		write(1, "rb\n", 3);
+	if (ps->bench.active || ps->count_only)
 	{
 		ps->bench.total_ops++;
 		ps->bench.op_counts[RB]++;
@@ -60,8 +62,9 @@ void	rr(t_push_swap *ps)
 {
 	rotate(&ps->a);
 	rotate(&ps->b);
-	write(1, "rr\n", 3);
-	if (ps->bench.active)
+	if (!ps->count_only)
+		write(1, "rr\n", 3);
+	if (ps->bench.active || ps->count_only)
 	{
 		ps->bench.total_ops++;
 		ps->bench.op_counts[RR]++;

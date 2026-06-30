@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/31 18:50:17 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/28 22:56:33 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/30 18:14:43 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ static void	parse_arg(t_push_swap *ps, char *argv)
 		ps->has_strategy = 1;
 		strategy_selector(&ps->strategy, argv);
 	}
+	else if (ft_strcmp(argv, "--count-only") == 0)
+		ps->count_only = 1;
 	else if (ft_strcmp(argv, "--bench") == 0)
 		ps->bench.active = 1;
 	else

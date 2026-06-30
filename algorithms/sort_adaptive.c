@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 14:27:01 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/28 19:48:20 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/30 21:03:02 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,20 @@ void	sort_adaptive(t_push_swap *ps)
 {
 	double	disorder;
 
+	if (stack_size(ps->a) <= 3)
+	{
+		sort_simple(ps);
+		return ;
+	}
+	if (stack_size(ps->a) > 3 && stack_size(ps->a) <= 5)
+	{
+		sort_simple(ps);
+		return ;
+	}
 	disorder = compute_disorder(ps->a);
 	if (disorder < 0.2)
 		sort_simple(ps);
-	else if (disorder >= 0.2 && disorder < 0.4)
+	else if (disorder >= 0.2 && disorder < 0.5)
 		chunk_sort_algorithm(ps);
 	else
 		radix_algorithm(ps);
