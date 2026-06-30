@@ -1,4 +1,4 @@
-_This activity has been created as part of the 42 curriculum by crmatas- and maaros-f._
+_This project has been created as part of the 42 curriculum by crmatas- and maaros-f._
 
 ## Description
 
