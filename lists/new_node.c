@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_node.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: crmatas- <crmatas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/20 14:27:01 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/27 18:45:37 by maaros-f         ###   ########.fr       */
+/*   Created: 2026/05/04 14:31:12 by crmatas-          #+#    #+#             */
+/*   Updated: 2026/05/31 17:10:34 by crmatas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ t_node	*new_node(int value)
 	if (!new)
 		return (NULL);
 	new->value = value;
-	new->next = NULL;
-	new->pos = 0;
 	new->next = NULL;
 	return (new);
 }

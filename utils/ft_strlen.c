@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: crmatas- <crmatas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/06/28 17:56:51 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/28 23:04:38 by maaros-f         ###   ########.fr       */
+/*   Created: 2026/06/26 23:38:33 by crmatas-          #+#    #+#             */
+/*   Updated: 2026/06/26 23:41:20 by crmatas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (s[i])
+	while (s[i] != '\0')
+	{
 		i++;
+	}
 	return (i);
 }

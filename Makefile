@@ -3,15 +3,13 @@ NAME = push_swap
 
 # Compiler and flags
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -I. -g
+CFLAGS = -Wall -Wextra -Werror -I.
 
 # Source files
-SRCS = main.c \
-	algorithms/chunk_sort_algorithm.c \
+SRCS = algorithms/chunk_sort_algorithm.c \
 	algorithms/radix_algorithm.c \
-	algorithms/sort_simple.c \
 	algorithms/sort_adaptive.c \
-	benchmark/print_benchmark_report.c \
+	algorithms/sort_simple.c \
 	error/error.c \
 	initialize/init_nodes.c \
 	initialize/init_push_swap.c \
@@ -25,9 +23,8 @@ SRCS = main.c \
 	utils/ft_strcmp.c \
 	utils/ft_strdup.c \
 	utils/ft_substr.c \
-	utils/ft_strlen.c \
 	utils/split.c \
-	utils/utils_benchmark.c \
+	utils/ft_strlen.c \
 	utils_algorithms/assign_index.c \
 	utils_algorithms/bring_to_top_a.c \
 	utils_algorithms/contains_chunk.c \
@@ -44,23 +41,26 @@ SRCS = main.c \
 	utils_algorithms/stack_size.c \
 	utils_algorithms/stack_to_array.c \
 	utils_algorithms/update_position.c \
-	utils_algorithms/sort_three.c \
-	utils_algorithms/compute_disorder.c \
+	utils_algorithms/utils_chunks.c \
 	parse/is_dplcte.c \
 	parse/is_sorted.c \
 	parse/is_strategy.c \
 	parse/parse_args.c \
 	parse/strategy_selector.c \
-	mov_functions/push.c \
-	mov_functions/swap.c \
-	mov_functions/rotate.c \
-	mov_functions/reverse_rotate.c
-
+	moves/push.c \
+	moves/reverse_rotate.c \
+	moves/rotate.c \
+	moves/sort_three.c \
+	moves/swap.c \
+	bench/print_benchmark_report.c \
+	bench/compute_disorder.c \
+	bench/utils_benchmark.c \
+	main.c 
 
 # Archivos objeto
 # Take the .c and creates the .o inside a folder called objects
 # OBJS = $(SRCS:.c=.o)
-OBJDIR = Objects
+OBJDIR = objects
 VPATH = $(sort $(dir $(SRCS)))
 OBJS = $(addprefix $(OBJDIR)/,$(notdir $(SRCS:.c=.o)))
 
@@ -78,11 +78,11 @@ $(OBJDIR)/%.o: %.c push_swap.h
 
 # Clean object files
 clean:
-	rm -f $(OBJS)
+	@rm -rf $(OBJDIR)
 
 # Clean everything
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 # Recompile everything
 re: fclean all

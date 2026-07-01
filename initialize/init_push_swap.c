@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 22:33:32 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/30 18:15:01 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/07/01 15:30:13 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ void	init_push_swap(t_push_swap *ps)
 	ps->strategy = ADAPTIVE;
 	ps->has_strategy = 0;
 	ps->bench.active = 0;
-	ps->bench.total_ops = 0;
-	ps->count_only = 0;
 	ps->bench.strategy = "Already sorted";
 	ps->bench.complexity = "O(n)";
+	ps->bench.total_ops = 0;
 	i = 0;
 	while (i < 11)
 	{

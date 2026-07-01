@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_chunks_size.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: crmatas- <crmatas-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/20 20:13:58 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/25 12:20:35 by crmatas-         ###   ########.fr       */
+/*   Updated: 2026/07/01 18:18:56 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,5 @@ int	get_chunk_size(int size)
 {
 	if (size <= 100)
 		return (20);
-	return (40);
+	return (45);
 }

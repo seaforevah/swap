@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: crmatas- <crmatas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/08 20:28:46 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/28 17:51:38 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/06/30 22:22:57 by crmatas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <unistd.h>
 
 void	error(t_push_swap *ps)
 {

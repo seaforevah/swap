@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sort_simple.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: crmatas- <crmatas-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 22:43:55 by maaros-f          #+#    #+#             */
-/*   Updated: 2026/06/30 20:53:24 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/07/01 00:26:22 by crmatas-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*Thhis function finds the minimum value in stack A, rotates
+/*This function finds the minimum value in stack A, rotates
 the stack to bring that minimum value to the top, and then pushes it
 to stack B. It uses the 'ra' (rotate A) and 'rra' (reverse rotate A)
 operations to move the minimum value to the top of stack A before
@@ -56,6 +56,12 @@ void	sort_simple(t_push_swap *ps)
 {
 	ps->bench.strategy = "Simple / Selection Sort";
 	ps->bench.complexity = "O(n^2)";
+	while (stack_size(ps->a) == 2)
+	{
+		if (ps->a->value > ps->a->next->value)
+			sa(ps);
+		return ;
+	}
 	while (stack_size(ps->a) > 3)
 		push_min_to_b(ps);
 	sort_three(ps);

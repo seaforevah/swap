@@ -6,7 +6,7 @@
 /*   By: maaros-f <maaros-f@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/19 17:05:10 by crmatas-          #+#    #+#             */
-/*   Updated: 2026/06/28 23:43:32 by maaros-f         ###   ########.fr       */
+/*   Updated: 2026/07/01 17:17:25 by maaros-f         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	radix_algorithm(t_push_swap *ps)
 	int	i;
 	int	j;
 
-	ps->bench.strategy = "Radix Sort";
+	ps->bench.strategy = "Complex / Radix Sort";
 	ps->bench.complexity = "O(n log n)";
 	size = ps->size_a;
 	max_bits = get_max_bits(ps);
